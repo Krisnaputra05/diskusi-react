@@ -1,0 +1,1 @@
+Aplikasi Discussion App ini dibangun dengan React, Redux Toolkit, dan Tailwind CSS. Fitur voting menerapkan Optimistic UI, dan kode telah diverifikasi menggunakan ESLint dengan standar Airbnb Style Guide.
