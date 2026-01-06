@@ -37,6 +37,7 @@ jobs:
       with:
         start: npm run dev
         wait-on: 'http://localhost:5173'
+        install-command: npm ci --legacy-peer-deps
         # Note: 'vite preview' default port is usually 4173, 'dev' is 5173.
         # Ensure we wait on the right port.
         # Checking vite config, preview port isn't hardcoded so likely 4173.
