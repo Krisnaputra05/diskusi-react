@@ -66,11 +66,11 @@ describe('threadsSlice', () => {
             const dispatch = vi.fn();
             await asyncPopulateThreads()(dispatch, vi.fn(), undefined);
 
-            const calls = dispatch.mock.calls;
-            const fulfilled = calls.find(c => c[0].type === asyncPopulateThreads.fulfilled.type);
+            const { calls } = dispatch.mock;
+            const [fulfilled] = calls.find(c => c[0].type === asyncPopulateThreads.fulfilled.type) || [];
             
             expect(fulfilled).toBeTruthy();
-            expect(fulfilled[0].payload).toEqual(mockThreads);
+            expect(fulfilled.payload).toEqual(mockThreads);
        });
 
        it('asyncAddThread success', async () => {
@@ -81,8 +81,9 @@ describe('threadsSlice', () => {
            await asyncAddThread({ title: 'Hello', body: 'body', category: 'cat' })(dispatch, vi.fn(), undefined);
 
            expect(api.createThread).toHaveBeenCalledWith({ title: 'Hello', body: 'body', category: 'cat' });
-           const fulfilled = calls = dispatch.mock.calls.find(c => c[0].type === asyncAddThread.fulfilled.type);
-           expect(fulfilled[0].payload).toEqual(mockThread);
+           const { calls } = dispatch.mock;
+           const [fulfilled] = calls.find(c => c[0].type === asyncAddThread.fulfilled.type) || [];
+           expect(fulfilled.payload).toEqual(mockThread);
        });
   });
 });

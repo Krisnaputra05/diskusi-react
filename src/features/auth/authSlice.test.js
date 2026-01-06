@@ -69,11 +69,11 @@ describe('authSlice', () => {
          expect(api.putAccessToken).toHaveBeenCalledWith(mockToken);
          expect(api.getOwnProfile).toHaveBeenCalled();
          
-         const calls = dispatch.mock.calls;
+         const { calls } = dispatch.mock;
          // Check if fulfilled action was dispatched
-         const fulfilledCall = calls.find(call => call[0].type === asyncLogin.fulfilled.type);
+         const [fulfilledCall] = calls.find(call => call[0].type === asyncLogin.fulfilled.type) || [];
          expect(fulfilledCall).toBeTruthy();
-         expect(fulfilledCall[0].payload).toEqual({ token: mockToken, user: mockUser });
+         expect(fulfilledCall.payload).toEqual({ token: mockToken, user: mockUser });
      });
 
      it('asyncLogin should dispatch rejected action on failure', async () => {
@@ -84,10 +84,10 @@ describe('authSlice', () => {
 
         await asyncLogin({ email: 'test@test.com', password: '123' })(dispatch, getState, undefined);
 
-        const calls = dispatch.mock.calls;
-        const rejectedCall = calls.find(call => call[0].type === asyncLogin.rejected.type);
+        const { calls } = dispatch.mock;
+        const [rejectedCall] = calls.find(call => call[0].type === asyncLogin.rejected.type) || [];
         expect(rejectedCall).toBeTruthy();
-        expect(rejectedCall[0].payload).toBe('Login failed');
+        expect(rejectedCall.payload).toBe('Login failed');
      });
   });
 });
