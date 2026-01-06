@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingBar from "react-redux-loading-bar"; // <--- UBAH INI (Library Import)
 import { asyncPreloadProcess } from "./features/auth/authSlice";
@@ -13,7 +13,6 @@ import Navigation from "./components/Navigation";
 function App() {
   const { isPreload } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(asyncPreloadProcess());

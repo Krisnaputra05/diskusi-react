@@ -154,7 +154,7 @@ const threadsSlice = createSlice({
             thread.downVotesBy = thread.downVotesBy.filter((id) => id !== userId);
          }
       })
-      .addCase(asyncToggleNeutralVote.rejected, (state, action) => {
+      .addCase(asyncToggleNeutralVote.rejected, () => {
          // Revert is hard.
       });
   },

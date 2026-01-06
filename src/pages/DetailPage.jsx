@@ -16,7 +16,7 @@ import { postedAt } from '../utils';
 function DetailPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { detail: thread, status } = useSelector((state) => state.threadDetail);
+  const { detail: thread } = useSelector((state) => state.threadDetail);
   const { user: authUser } = useSelector((state) => state.auth);
   
   const [commentContent, setCommentContent] = useState('');
